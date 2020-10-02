@@ -3,19 +3,19 @@
   {
 	 include 'conn.php';
 	 $errors = array();
-     $name = filter_var( $_POST['name'], FILTER_SANITIZE_STRING);
+     $name = filter_var( mysqli_real_escape_string($conn,$_POST['name']), FILTER_SANITIZE_STRING);
 	 if(empty($name))
 	  {
 		$errors[] = 'You forgot to enter your name.';
 	  }	
-     $email = filter_var( $_POST['email'], FILTER_SANITIZE_EMAIL);
+     $email = filter_var( mysqli_real_escape_string($conn,$_POST['email']), FILTER_SANITIZE_EMAIL);
 	  if ((empty($email)) || (!filter_var($email, FILTER_VALIDATE_EMAIL)))
 	  {
 		  $errors[] = 'You forgot to enter your email address';
           $errors[] = ' or the e-mail format is incorrect.';
 	  }
-	 $password1 = filter_var( $_POST['password1'], FILTER_SANITIZE_STRING);
-     $password2 = filter_var( $_POST['password2'], FILTER_SANITIZE_STRING);
+	 $password1 = filter_var( mysqli_real_escape_string($conn,$_POST['password1']), FILTER_SANITIZE_STRING);
+     $password2 = filter_var( mysqli_real_escape_string($conn,$_POST['password2']), FILTER_SANITIZE_STRING);
      if (!empty($password1)) {
      if ($password1 !== $password2) {
         $errors[] = 'Your two password did not match.';
