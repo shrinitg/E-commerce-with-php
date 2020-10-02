@@ -5,8 +5,8 @@
   {
 	  $errors = array();
 	  //$name = $_GET['name'];
-	  $email = trim($_POST['email']);
-	  $password = trim($_POST['password']);
+	  $email = trim(mysqli_real_escape_string($conn, $_POST['email']));
+	  $password = trim(mysqli_real_escape_string($conn,$_POST['password']));
 	  if(empty($email))
 	  {
 		 $errors[] = "you email wrong"; 
